@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<h2>DD CM Estimated cost</h2>
+<div class="row">
+    <div class="input-field col s3">
+        <select id="metric-type">
+            <option value="SIMPLE">Count, Rate, Gauge, Set</option>
+            <option value="HISTOGRAM">Histogram</option>
+            <option value="DISTRIBUTION">Distribution</option>
+            <option value="DISTRIBUTION_WITH_P">Distribution with percentiles</option>
+        </select>
+        <label>Metric type</label>
+    </div>
+</div>
+<button id="add-tag-button" type="button" onclick="addTagInput()">Add another tag</button>
+
+
+<div class="row"><p class="inline">Max cardinality: </p>
+    <p class="inline" id="max-cardinality">0</p></div>
+<div class="row"><p class="inline">Result: $</p>
+    <p class="inline" id="result">0</p>
+    <p class="inline"> per month</p></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="main.js"></script>
+<script>addTagInput()</script>
+</body>
+</html>
