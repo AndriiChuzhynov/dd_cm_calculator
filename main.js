@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //todo add calculation description
 
 let t = `
-<div class="row">
+<div class="row tag-pane" style="border-style: groove;">
     <div class="input-field col s2">
         <input id="{{tag_name}}" type="text" class="validate">
         <label for="{{tag_name}}">Tag name</label>

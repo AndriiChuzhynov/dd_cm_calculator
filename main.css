@@ -1,9 +1,11 @@
 
-.chips {
-    /*padding: 25px 25px;*/
-    /*margin: 100px*/
+body {
+   padding: 12px;
 }
-
 .inline {
     display:inline
+}
+
+.tag-pane {
+    border-style: groove;
 }
