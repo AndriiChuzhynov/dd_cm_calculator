@@ -1,4 +1,4 @@
-let tagsNum = 0;
+let tagsCount = 0;
 let cmCost = 0.02
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     elems.forEach(value => value.addEventListener('change', calculateResult))
 });
 
-//todo add calculation description
+//todo option to remove tag
 
 let t = `
 <div class="row tag-pane" style="border-style: groove;">
@@ -17,22 +17,22 @@ let t = `
     </div>
     <div id="{{chips}}" class="chips chips-placeholder col s9"></div>
     <div class="input-field col s2">
-        <input id="{{car_num}}" type="number" min="0" class="validate">
-        <label for="{{car_num}}">Or type num here</label>
+        <input id="{{car_count}}" type="number" min="0" class="validate">
+        <label for="{{car_count}}">Or type count here</label>
     </div>
 </div`
 
 
-let carNumIdPrefix = "car_num_";
+let carCountIdPrefix = "car_count_";
 
 function addTagInput() {
     let newElement = document.createElement("div")
     let t1 = t;
-    t1 = t1.replaceAll("{{chips}}", "chips_" + tagsNum)
-    t1 = t1.replaceAll("{{tag_name}}", "tag_name_" + tagsNum)
-    let car_num_id = carNumIdPrefix + tagsNum;
-    t1 = t1.replaceAll("{{car_num}}", car_num_id)
-    tagsNum++;
+    t1 = t1.replaceAll("{{chips}}", "chips_" + tagsCount)
+    t1 = t1.replaceAll("{{tag_name}}", "tag_name_" + tagsCount)
+    let car_count_id = carCountIdPrefix + tagsCount;
+    t1 = t1.replaceAll("{{car_count}}", car_count_id)
+    tagsCount++;
     newElement.innerHTML = t1
     const button = document.getElementById("add-tag-button");
     document.body.insertBefore(newElement, button);
@@ -44,7 +44,7 @@ function addTagInput() {
         onChipDelete: calculateResult
     });
 
-    let inputElem = document.getElementById(car_num_id);
+    let inputElem = document.getElementById(car_count_id);
     inputElem.oninput = function () {
         inputElem.innerHTML = "0"
         calculateResult()
@@ -56,7 +56,7 @@ function calculateResult() {
     let chips = document.getElementsByClassName("chips");
     let tagsCar = [];
     for (let i = 0; i < chips.length; i++) {
-        let carInput = document.getElementById(carNumIdPrefix + i);
+        let carInput = document.getElementById(carCountIdPrefix + i);
         const instance = M.Chips.getInstance(chips[i]);
         if (carInput.value > 0) {
             tagsCar.push(carInput.value)
@@ -78,12 +78,15 @@ function calculateResult() {
     switch (selectedMetric.value) {
         case "HISTOGRAM":
             maxCardinality = maxCardinality * 5
+            document.getElementById('note').innerHTML = "Metrics multiplied by 5, because histogram effectively adds 5 metrics."
             break;
         case "DISTRIBUTION":
             maxCardinality = maxCardinality * 5
+            document.getElementById('note').innerHTML = "Metrics multiplied by 5, because distribution saved as 5 metrics."
             break;
         case "DISTRIBUTION_WITH_P":
             maxCardinality = maxCardinality * 10
+            document.getElementById('note').innerHTML = "Metrics multiplied by 10, because distribution saved as 5 metrics and 5 for each percentile."
             break;
     }
     document.getElementById("max-cardinality").innerHTML = "" + maxCardinality

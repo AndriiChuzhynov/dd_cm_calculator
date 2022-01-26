@@ -9,3 +9,7 @@ body {
 .tag-pane {
     border-style: groove;
 }
+
+.note {
+    color: rgba(134, 134, 134, 0.98);
+}
